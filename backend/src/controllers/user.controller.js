@@ -21,7 +21,7 @@ export async function getRecomdatedUser(req,res) {
         const recomdatedUser = await User.find({
             $and:[
                 { _id:{$ne:userId}},
-                { id:{$nin:currentUser.friends}},
+                { _id:{$nin:currentUser.friends}},
                 {isOnboarded:true}
             ]
         });
@@ -117,7 +117,7 @@ export async function outgoingfriendRequest(req,res){
      try {
         const userId=req.user._id;
         
-        const request= await FriendRequest.find({sender:userId,status:"Pending "}).populate("recipient","fullName profilePic learningLanguage nativeLanguage");
+        const request= await FriendRequest.find({sender:userId,status:"Pending"}).populate("recipient","fullName profilePic learningLanguage nativeLanguage");
         res.status(200).json(  request);
           
      } catch (error) {
