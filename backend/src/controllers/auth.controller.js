@@ -92,7 +92,7 @@ export async function  onboarding(req,res){
         const userId=req.user._id;
         const{fullName,bio,nativeLanguage,learningLanguage,location}=req.body; 
         if(!fullName||!bio||!nativeLanguage||!learningLanguage||!location){
-           return res.status(400).json({message:"all fields are required",
+           return res.status(400).json({message:"All fields are required",
              missing:[
                 !fullName&&"fullName",!bio&&"bio",!nativeLanguage&&"nativeLanguage",!learningLanguage&&"learnignLanguage",!location&&"location"
              ].filter(Boolean )
@@ -103,7 +103,7 @@ export async function  onboarding(req,res){
             isOnboarded:true,
         },{new:true})
         if(!updatedUser){
-            return res.status(404).json({message:"user Not Found"})
+            return res.status(404).json({message:"User Not Found"})
         }
         try{
             await upsertStreamUser({id:updatedUser._id.toString(),name:updatedUser.fullName,image:updatedUser.profilePic});

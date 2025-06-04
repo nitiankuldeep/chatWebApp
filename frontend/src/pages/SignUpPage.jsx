@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {ShipWheelIcon} from "lucide-react";
 import {Link} from 'react-router';
-import{useMutation, useQueryClient} from "@tanstack/react-query"
+import useSignup from '../hooks/useSignup.js';
 
 const SignUpPage = () => {
   const [signupData,setSignupData]=useState({
@@ -9,16 +9,13 @@ const SignUpPage = () => {
     email:"",
     password:""
   });
-  const queryClient=useQueryClient(); 
-  const {mutate:signupMutation,isPending,error} =  useMutation({
-    mutationFn: singnup,
-    onSuccess:()=>queryClient.invalidateQueries({queryKey:["authUser"]})
-})
+  
+const{signupMutation,isPending,error}=useSignup();
 
   const handleSignup =(e)=>{
     e.preventDefault();
     signupMutation (signupData);
-  }
+  };
 
   return (
     <div className="h-screen flex items-center justify-center p-4 sm:p-6 md:p-8" data-theme="forest">
@@ -31,12 +28,11 @@ const SignUpPage = () => {
             <ShipWheelIcon className="size-9  text-primary"/>
             <span className="text-3xl font-bold font-mono  bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary tracking-wider "> Chat </span>
            </div>
-           {error &&(
+           {error && (
             <div className='alert alert-error mb-4'>
               <span>{error.response.data.message}</span>
             </div>
-           )
-           }
+           )}
            <div className="w-full ">
             <form onSubmit={handleSignup}>
               <div className="space-y-4">
@@ -82,7 +78,15 @@ const SignUpPage = () => {
                         
                         
                 </div>
-                <button className='btn btn-primary w-full' type='submit '>{isPending?"Signing Up...":"Create Account"}</button>
+                <button className='btn btn-primary w-full' type='submit '>{isPending?(
+                  <>
+                  <span className='loading loading-spinner loading-xs'>
+                    Loading..
+                  </span>
+                  </>
+                ):(<>
+                Create Account
+                </>)}</button>
 
                 <div className='text-center mt-4'>
                     <p className='text-sm gap-2'>
