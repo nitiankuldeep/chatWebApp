@@ -1,6 +1,7 @@
 import React from 'react'
 import { LANGUAGE_TO_FLAG } from '../constants';
 import { Link } from 'react-router';
+import { capitialize } from '../lib/util';
 
 const FriendCard = ({friend}) => {
   return (
@@ -35,6 +36,4 @@ export function getLanguageFlag(Language){
     }
     return null;
 }
-export const capitialize = (str)=>{
-    return str.charAt(0).toUpperCase()+str.slice(1);
-}
+
