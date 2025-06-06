@@ -3,12 +3,12 @@ import mongoose from "mongoose";
 const requestSchema= new mongoose.Schema({
     sender:{
         type : mongoose.Schema.Types.ObjectId,
-        rel : "User",
+        ref : "User",
         required:true
     },
     recipient:{
         type : mongoose.Schema.Types.ObjectId,
-        rel : "User",
+        ref : "User",
         required:true
     },
     status:{
@@ -18,7 +18,7 @@ const requestSchema= new mongoose.Schema({
         
     }
 },{
-    timeseries:true,
+    timestamps: true,
 });
 
 const FriendRequest=mongoose.model("FriendRequest",requestSchema);

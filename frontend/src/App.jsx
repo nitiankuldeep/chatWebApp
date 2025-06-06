@@ -12,6 +12,7 @@ import PageLoader from './components/PageLoader.jsx';
 import useAuthUser from './hooks/useAuthUser.js';
 import Layout  from './components/Layout.jsx';
 import { useThemeStore } from './store/useThemeStore.js';
+import FriendsPage from './pages/FriendsPage.jsx';
 
 
 
@@ -24,17 +25,18 @@ const App = () => {
   if(isLoading){
     return <PageLoader/> 
   }
-  return (
+  return ( 
     <div data-theme={theme }> 
       
       <Routes>
         <Route path="/" element={isAuthenticated&&isOnboarded?(<Layout showSideBar={true}><HomePage/></Layout>): <Navigate to={isAuthenticated?"/onboarding":"/login"}/>}></Route>
         <Route path="/signup" element={!isAuthenticated?<SignUpPage/>:(isOnboarded?(<Navigate to="/"/>):<Navigate to="/onboarding"/>)}></Route>
         <Route path="/login" element={!isAuthenticated?<LoginPage/>:(isOnboarded?(<Navigate to="/"/>):<Navigate to="/onboarding"/>)}></Route>
-        <Route path="/chat" element={isAuthenticated?(isOnboarded?(<Layout showSideBar={false}><ChatPage/></Layout>):<Navigate to="/onboarding"/>): <Navigate to="/login"/>}></Route>
-        <Route path="/call" element={isAuthenticated?(isOnboarded?(<CallPage/>):<Navigate to="/onboarding"/>): <Navigate to="/login"/>}></Route>
-        <Route path="/notification" element={isAuthenticated?(isOnboarded?(<NotificationPage/>):<Navigate to="onboarding"/>): <Navigate to="/login"/>}></Route>
+        <Route path="/chat/:id" element={isAuthenticated?(isOnboarded?(<Layout showSideBar={false}><ChatPage/></Layout>):<Navigate to="/onboarding"/>): <Navigate to="/login"/>}></Route>
+        <Route path="/call/:id" element={isAuthenticated?(isOnboarded?(<CallPage/>):<Navigate to="/onboarding"/>): <Navigate to="/login"/>}></Route>
+        <Route path="/notification" element={isAuthenticated?(isOnboarded?(<Layout showSideBar={true}><NotificationPage/></Layout>):<Navigate to="onboarding"/>): <Navigate to="/login"/>}></Route>
         <Route path="/onboarding" element={isAuthenticated?(!isOnboarded?<OnBoardingPage/>:<Navigate to="/"/>): (<Navigate to="/login"/>)}></Route>
+        <Route path="/friends" element={isAuthenticated?(isOnboarded?(<Layout showSideBar={true}><FriendsPage/></Layout>):<Navigate to="/onboarding"/>): <Navigate to="/login"/>}></Route>
       </Routes>
       <Toaster/>  
     </div>
