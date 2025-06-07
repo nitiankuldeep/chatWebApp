@@ -1,58 +1,63 @@
-
 # 🌐 Chat | Language Learning Through Real-Time Conversation
 
-A modern chat application that allows users to **chat, share files, and make video calls** while learning new languages. Each user specifies their **native** and **learning language**, and connects with users around the world for immersive, real-time language exchange.
+A modern chat application that enables users to **chat, share files, and make video calls** while learning new languages. Users specify their **native** and **learning language**, and the app connects them with compatible users for immersive, real-time language exchange — including both **one-on-one** and **group** conversations.
 
 ---
 
 ## 📌 Key Features
 
 ### 💬 Real-Time Messaging
-- One-on-one chats using **Stream Chat API**
-- Typing indicators, replies, and emoji reactions
-- Seen/read status support
+- **One-on-one and group chats** using **Stream Chat API**
+- Typing indicators, threaded replies, and emoji reactions
+- Read/seen status for clarity
+
+### 👥 Group Chat
+- Create and join language learning groups
+- Invite members via email
+- Admins can manage members (basic admin control)
+- Backed by **Stream team channels** for real-time communication
+
+### 🧠 Recommended Users
+- See suggested users based on your:
+  - `nativeLanguage` ↔ `learningLanguage` pairing
+- Easily start a conversation with compatible language partners
 
 ### 📹 Video Calling
-- Peer-to-peer audio/video calls via **Stream Video SDK**
+- Peer-to-peer video and audio calls using **Stream Video SDK**
+- Initiate video calls directly from a chat
 
 ### 📂 File Sharing
-- Upload documents, images, PDFs, and more
-- Files are stored securely using Stream
-- Preview or download attachments from chat
+- Send documents, images, PDFs, and more
+- Secure storage and sharing via Stream
+- In-chat previews and download options
 
 ### 🎨 UI & Themes
-- 32 beautiful themes using **DaisyUI**
-- Light/Dark mode support
-- Built with **Tailwind CSS** for responsive layout
-- Uses **Lucide icons** for elegant UI consistency
-
-### 🧠 Language Learning Focus
-- Every user has a:
-  - `nativeLanguage`
-  - `learningLanguage`
-- Chat matches can be made based on language compatibility
+- 32 elegant themes with **DaisyUI**
+- Light/Dark mode toggle
+- Responsive design using **Tailwind CSS**
+- Clean iconography with **Lucide Icons**
 
 ### 🔐 Authentication & Security
-- Email + password login system
-- Passwords hashed securely
-- Email validation using regex
-- Authentication handled with **JWT**
+- Register/login with email + password
+- Passwords securely hashed
+- Email format validation
+- JWT-based authentication system
 
 ### 🔔 Notification System
-- In-app notifications using a bell icon
-- Toast popups for instant alerts
-- Dedicated **Notification Page** to review all activity
+- Bell icon for in-app alerts
+- Toast popups for real-time feedback
+- Dedicated **Notifications Page** for full history
 
 ---
 
 ## 🧰 Tech Stack
 
-| Layer        | Technology                             |
-|--------------|-----------------------------------------|
+| Layer        | Technology                                 |
+|--------------|---------------------------------------------|
 | Frontend     | React, Tailwind CSS, DaisyUI, Lucide Icons |
-| Backend      | Node.js, Express, MongoDB, JWT Auth     |
-| Real-Time    | Stream Chat API, Stream Video SDK       |
-| Notifications| Toastify, Custom UI                     |
+| Backend      | Node.js, Express, MongoDB, JWT Auth         |
+| Real-Time    | Stream Chat API, Stream Video SDK           |
+| Notifications| Toastify, Custom Notification Logic         |
 
 ---
 
@@ -61,17 +66,17 @@ A modern chat application that allows users to **chat, share files, and make vid
 ```
 chatWebApp/
 ├── backend/             # Express server and APIs
-│   ├── routes/
-│   ├── models/
-│   ├── controllers/
-│   └── server.js
+│   ├── routes/          # User, auth, group, chat routes
+│   ├── models/          # Mongoose models for User, Group, etc.
+│   ├── controllers/     # Business logic
+│   └── server.js        # Server entry point
 ├── frontend/            # React UI with Tailwind & DaisyUI
-│   ├── components/
-│   ├── pages/
-│   └── App.js
+│   ├── components/      # Reusable UI components
+│   ├── pages/           # Login, Chat, Groups, etc.
+│   └── App.js           # Main app file
 ├── screenshots/         # Add demo screenshots here
 ├── .env.example         # Sample environment config
-└── README.md
+└── README.md            # Project documentation
 ```
 
 ---
@@ -125,14 +130,13 @@ npm run dev
 
 ## 📦 Future Enhancements
 
-- [ ] Language-based user matching algorithm
-- [ ] Group chat with moderators/admin controls
-- [ ] GPT-based grammar correction & translation
-- [ ] Typing indicators and online/offline badges
+- [ ] Group admin moderation (add/remove members)
+- [ ] Public discoverable groups with join requests
+- [ ] GPT-powered grammar suggestions and inline translation
+- [ ] Online/offline status and typing indicators
 - [ ] OAuth login (Google, GitHub)
 
 ---
-
 
 ## 👨‍💻 Author
 
@@ -140,7 +144,3 @@ npm run dev
 🔗 GitHub: [@nitiankuldeep](https://github.com/nitiankuldeep)
 
 ---
-
-## 📄 License
-
-This project is licensed under the **MIT License** – feel free to use, modify, and contribute.
