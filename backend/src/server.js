@@ -5,6 +5,7 @@ import userRoutes from "./routes/user.route.js";
 import chatRoutes from "./routes/chat.route.js";
 import connectDB from"./lib/db.js";
 import cookieParser from "cookie-parser"; 
+import groupRoutes from './routes/group.route.js'
 import cors from "cors"
 
 const app = express()
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/chat", chatRoutes);
+app.use('/api/groups', groupRoutes);
 
 
 app.listen(PORT,()=>{

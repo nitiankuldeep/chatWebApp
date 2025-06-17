@@ -4,7 +4,7 @@ export async function getMyFriends(req,res){
     try {
         const userId=req.user._id;
         
-        const user = await User.findById(req.user._id).select("friends").populate("friends","fullName profilePic nativeLanguage learningLanguage");
+        const user = await User.findById(req.user._id).select("friends").populate("friends","fullName profilePic nativeLanguage learningLanguage email");
         res.status(200).json(user.friends);
         
     } catch (error) {
@@ -18,14 +18,16 @@ export async function getRecomdatedUser(req,res) {
     try {
         const userId=req.user._id;
         const currentUser=req.user;
-        const recomdatedUser = await User.find({
-            $and:[
-                { _id:{$ne:userId}},
-                { _id:{$nin:currentUser.friends}},
-                {isOnboarded:true}
-            ]
-        });
-        res.status(200).json(recomdatedUser);
+        const recommendedUsers = await User.find({
+        $and: [
+            { _id: { $ne: userId } },                      
+            { _id: { $nin: currentUser.friends || [] } }, 
+            { isOnboarded: true },                         
+            { nativeLanguage: currentUser.learningLanguage },  
+            { learningLanguage: currentUser.nativeLanguage }   
+      ]
+    })
+        res.status(200).json(recommendedUsers);
         
     } catch (error) {
         console.log("error while getting recomdating users",error);
