@@ -1,6 +1,6 @@
  import useAuthUser from '../hooks/useAuthUser.js'
 import { useLocation,Link } from 'react-router';
-import { BellIcon, HomeIcon, ShipWheelIcon, UsersIcon } from 'lucide-react';
+import { BellIcon, GrabIcon, GroupIcon, HeartHandshake, HomeIcon, ShipWheelIcon, UsersIcon } from 'lucide-react';
 
 
 const Sidebarr  = () => {
@@ -28,6 +28,15 @@ const Sidebarr  = () => {
         <BellIcon/>
         Notifications
         </Link>
+        <Link to ="/groups" className={`btn btn-ghost justify-start w-full gap-3 px-3 normal-case ${currentPath==='/notification'? "btn-active":""}`}>
+        <GroupIcon/>
+        Groups
+        </Link>
+        <Link to ="/groups/create" className={`btn btn-ghost justify-start w-full gap-3 px-3 normal-case ${currentPath==='/notification'? "btn-active":""}`}>
+        <HeartHandshake/>
+         Create Group
+        </Link>
+
       </nav>
       <div className=' p-4 border-t border-base-300 mt-auto '>
         <div className='flex items-center gap-3'>

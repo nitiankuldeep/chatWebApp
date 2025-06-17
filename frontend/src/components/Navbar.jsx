@@ -12,7 +12,7 @@ import { useState ,useEffect} from 'react';
     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 1018);
     const {authUser}=useAuthUser();
     const location=useLocation();
-    const isChatPage=location?.pathname?.startsWith("/chat");
+    const isChatPage=location?.pathname?.startsWith("/chat")||location?.pathname?.startsWith("/group-chat");
     useEffect(() => {
       const handleResize = () => {
         setIsSmallScreen(window.innerWidth <= 1018);

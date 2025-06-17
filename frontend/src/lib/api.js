@@ -53,3 +53,17 @@ export const getStreamToken= async ()=>{
     const response =await axiosInstance.get('/chat/token');
     return response.data;
 }
+export const createGroup = async (groupData) => {
+  
+  const response = await axiosInstance.post("/groups/create", groupData);
+  return response.data;
+};
+export const getUserGroups = async (token) => {
+  
+  const response = await axiosInstance.get("/groups/mygroups");
+  return response.data;
+};
+export const getGroupById = async (groupId) => {
+  const response = await axiosInstance.get(`/groups/${groupId}`);
+  return response.data;
+};

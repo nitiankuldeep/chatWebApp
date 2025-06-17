@@ -13,6 +13,9 @@ import useAuthUser from './hooks/useAuthUser.js';
 import Layout  from './components/Layout.jsx';
 import { useThemeStore } from './store/useThemeStore.js';
 import FriendsPage from './pages/FriendsPage.jsx';
+import CreateGroup from './pages/CreateGroup.jsx';
+import SingleGroupChatPage from './pages/SingleGroupChatPage.jsx';
+import GroupList from './components/GroupList.jsx';
 
 
 
@@ -37,6 +40,10 @@ const App = () => {
         <Route path="/notification" element={isAuthenticated?(isOnboarded?(<Layout showSideBar={true}><NotificationPage/></Layout>):<Navigate to="onboarding"/>): <Navigate to="/login"/>}></Route>
         <Route path="/onboarding" element={isAuthenticated?(!isOnboarded?<OnBoardingPage/>:<Navigate to="/"/>): (<Navigate to="/login"/>)}></Route>
         <Route path="/friends" element={isAuthenticated?(isOnboarded?(<Layout showSideBar={true}><FriendsPage/></Layout>):<Navigate to="/onboarding"/>): <Navigate to="/login"/>}></Route>
+        <Route path="/groups" element={isAuthenticated && isOnboarded ? (<Layout showSideBar={true}>< GroupList/></Layout>) : (<Navigate to={isAuthenticated ? "/onboarding" : "/login"} />)} />
+        <Route path="/groups/create" element={isAuthenticated ?<Layout showSideBar> <CreateGroup /></Layout> : <Navigate to="/login" />}/>
+        <Route path="/group-chat/:groupId" element={<Layout><SingleGroupChatPage /></Layout>} />
+
       </Routes>
       <Toaster/>  
     </div>
